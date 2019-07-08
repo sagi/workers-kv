@@ -36,7 +36,7 @@ const allKeys = await KV.listAllKeys({ namespaceId })
 
 ## API
 
-We try to adhere to [Cloudflare's Workers KV REST API](https://api.cloudflare.com/#workers-kv-namespace-properties)
+We adhere to [Cloudflare's Workers KV REST API](https://api.cloudflare.com/#workers-kv-namespace-properties).
 
 ### **`WorkersKV({ ... })`**
 

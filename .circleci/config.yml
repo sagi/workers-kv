@@ -28,9 +28,9 @@ jobs:
           command: yarn lint
       - run:
         name: prettier
-        command: yarn prettier  --list-different ./src/*.js
+        command: yarn prettier --list-different ./src/*.js
       - run:
-          name: code coverage
+          name: code-coverage
           command: yarn test --coverage
       - store_artifacts:
           path: coverage
