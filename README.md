@@ -55,10 +55,10 @@ const WorkersKV = function({
 
 Where:
 
-  - **`cfAccountId`** *required* is your Cloudflare account id.
-  - **`cfEmail`** *required* is the email you registered with Cloudflare.
-  - **`cfAuthKey`** *required* is your Cloudflare Auth Key.
-  - **`namespaceId`** *optional* is the `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
+  - **`cfAccountId`** *required* Your Cloudflare account id.
+  - **`cfEmail`** *required* The email you registered with Cloudflare.
+  - **`cfAuthKey`** *required* Your Cloudflare Auth Key.
+  - **`namespaceId`** *optional* The `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
 
 ### **`listKeys({ ... })`**
 
@@ -75,10 +75,10 @@ const listKeys = async ({
 
 Where:
 
-  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
   - **`limit`** *optional* The number of keys to return. The cursor attribute may be used to iterate over the next batch of keys if there are more than the limit.
-  - **`cursor`** *optional* opaque token indicating the position from which to continue when requesting the next set of records if the amount of list results was limited by the limit parameter. A valid value for the cursor can be obtained from the cursors object in the result_info structure.
-  - **`prefix`** *optional* a string prefix used to filter down which keys will be returned. Exact matches and any key names that begin with the prefix will be returned.
+  - **`cursor`** *optional* Opaque token indicating the position from which to continue when requesting the next set of records if the amount of list results was limited by the limit parameter. A valid value for the cursor can be obtained from the cursors object in the result_info structure.
+  - **`prefix`** *optional* A string prefix used to filter down which keys will be returned. Exact matches and any key names that begin with the prefix will be returned.
 
 ### **`listAllKeys({ ... })`**
 
@@ -96,9 +96,9 @@ const listAllKeys = async ({
 
 Where:
 
-  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
-  - **`cursor`** *optional* opaque token indicating the position from which to continue when requesting the next set of records if the amount of list results was limited by the limit parameter. A valid value for the cursor can be obtained from the cursors object in the result_info structure.
-  - **`prefix`** *optional* a string prefix used to filter down which keys will be returned. Exact matches and any key names that begin with the prefix will be returned.
+  - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`cursor`** *optional* Opaque token indicating the position from which to continue when requesting the next set of records if the amount of list results was limited by the limit parameter. A valid value for the cursor can be obtained from the cursors object in the result_info structure.
+  - **`prefix`** *optional* A string prefix used to filter down which keys will be returned. Exact matches and any key names that begin with the prefix will be returned.
 
 ### **`listNamespaces({ ... })`**
 
@@ -130,7 +130,7 @@ const readKey = async ({
 Where:
 
   - **`key`** *required* the key name.
-  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
 
 ### **`deleteKey({ ... })`**
 
@@ -146,7 +146,7 @@ const deleteKey= async ({
 Where:
 
   - **`key`** *required* the key name.
-  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
 
 ### **`writeKey({ ... })`**
 
@@ -169,6 +169,7 @@ Where:
   - **`namespaceId`** *optional* Is the namespace id (can also be provided while instantiating `WorkersKV`).
   - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
   - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
+
 ### **`writeMultipleKeys({ ... })`**
 
 Function definition:
@@ -184,7 +185,23 @@ const writeMultipleKeys => async ({
 
 Where:
 
-  - **`keyValueMap`** *required* is an object with string keys and values. e.g  `{ keyName1: 'keyValue1', keyName2: 'keyValue2' }`
-  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
-  - **`expiration`** *optional* the time, measured in number of seconds since the UNIX epoch, at which the key should expire.
-  - **`expiration_ttl`** *optional* the number of seconds for which the key should be visible before it expires. At least 60.
+  - **`keyValueMap`** *required* Is an object with string keys and values. e.g  `{ keyName1: 'keyValue1', keyName2: 'keyValue2' }`
+  - **`namespaceId`** *optional* Is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
+  - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
+
+### **`deleteMultipleKeys({ ... })`**
+
+Function definition:
+
+```js
+const deleteMultipleKeys = async ({
+  keys,
+  namespaceId = '',
+}) => { ... }
+```
+
+Where:
+
+  - **`keys`** *required* An array of keys to be deleted.
+  - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
