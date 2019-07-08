@@ -11,6 +11,7 @@
     "build": "babel --ignore '**/*.test.js' --ignore testdata src -d lib --verbose",
     "prepublish": "yarn build",
     "coverage": "yarn build && yarn jest --coverage",
+    "lint": "yarn eslint ./src",
     "test": "yarn build && yarn jest"
   },
   "dependencies": {
@@ -36,12 +37,5 @@
     "type": "git",
     "url": "https://github.com/sagi/cfw-jwt.git"
   },
-  "keywords": [
-    "cloudflare",
-    "workers",
-    "cloudflare workers",
-    "kv",
-    "api",
-    "node"
-  ]
+  "keywords": ["cloudflare", "workers", "cloudflare workers", "kv", "api", "node"]
 }

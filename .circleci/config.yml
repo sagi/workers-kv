@@ -1,46 +1,37 @@
-version: 2
+version:
 jobs:
   build:
-    docker:
-      - image: circleci/node:8.11
-
     working_directory: ~/repo
-
+    docker:
+      - image: circleci/node:8.10
+        environment:
+          TZ: "Asia/Jerusalem"
     steps:
-      - checkout
-
-      # Download and cache dependencies
+      - checkout # special step to check out source code to working directory
       - restore_cache:
+          name: Restore Yarn Package Cache
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # test
+            - ~/.cache/yarn
       - run:
-          name: "test"
+          name: test
           command: yarn test
-
-      # coverage
       - run:
-          name: "coverage"
-          command: yarn coverage --ci --reporters=default --reporters="jest-junit"
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-
-      - store_test_results:
-          path: reports/junit
+          name: eslint
+          command: yarn lint
+      -run:
+        name: prettier
+        command: yarn prettier  --list-different ./src/*.js
+      - run:
+          name: code coverage
+          command: yarn test --coverage
       - store_artifacts:
-          path: reports/junit
-
-      # coveralls
-      - run:
-          name: "coveralls"
-          command: yarn coverage --coverageReporters=text-lcov | yarn coveralls
+          path: coverage
+          prefix: coverage
