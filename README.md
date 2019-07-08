@@ -1,23 +1,25 @@
-# cfw-jwt
+# workers-kv
 
-[`@sagi.io/cfw-jwt`](https://www.npmjs.com/package/@sagi.io/cfw-jwt) helps you
-generate a `JWT` on Cloudflare Workers with the WebCrypto API. Helper function for GCP Service Accounts included.
+[`@sagi.io/workers-kv`](https://www.npmjs.com/package/@sagi.io/workers-kv) is a Cloudflare Workers KV API for Node.js.
 
-[![CircleCI](https://circleci.com/gh/sagi/cfw-jwt.svg?style=svg)](https://circleci.com/gh/sagi/cfw-jwt)
-[![Coverage Status](https://coveralls.io/repos/github/sagi/cfw-jwt/badge.svg?branch=master)](https://coveralls.io/github/sagi/cfw-jwt?branch=master)
-[![MIT License](https://img.shields.io/npm/l/@sagi.io/cfw-jwt.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![version](https://img.shields.io/npm/v/@sagi.io/cfw-jwt.svg?style=flat-square)](http://npm.im/@sagi.io/cfw-jwt)
+[![CircleCI](https://circleci.com/gh/sagi/workers-kv.svg?style=svg&circle-token=c5ae7a8993d47db9ca08a628614585ca45c75f33)](https://circleci.com/gh/sagi/workers-kv)
+[![MIT License](https://img.shields.io/npm/l/@sagi.io/workers-kv.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![version](https://img.shields.io/npm/v/@sagi.io/workers-kv.svg?style=flat-square)](http://npm.im/@sagi.io/workers-kv)
 
 ## Installation
 
 ~~~
-$ npm i @sagi.io/cfw-jwt
+$ npm i @sagi.io/workers-kv
 ~~~
 
-## API
+## WorkersKV Instance
 
-We currently expose two methods: `getToken` for general purpose `JWT` generation
-and `getTokenFromGCPServiceAccount` for `JWT` generation using a `GCP` service account.
+
+~~~js
+const WorkersKV = require('@sagi.io/workers-kv')
+
+const KV = new WorkersKV({})
+~~~
 
 ### **`getToken({ ... })`**
 
