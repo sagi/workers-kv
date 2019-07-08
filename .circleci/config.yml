@@ -27,8 +27,8 @@ jobs:
           name: eslint
           command: yarn lint
       - run:
-        name: prettier
-        command: yarn prettier:ci
+          name: prettier
+          command: yarn prettier:ci
       - run:
           name: code-coverage
           command: yarn test --coverage
