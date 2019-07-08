@@ -12,36 +12,48 @@
 $ npm i @sagi.io/workers-kv
 ~~~
 
-## WorkersKV Instance
+## Quickstart
 
+First, instantiate a `WorkersKV` instance:
 
 ~~~js
 const WorkersKV = require('@sagi.io/workers-kv')
+  const cfAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const cfAuthKey = process.env.CLOUDFLARE_AUTH_KEY;
+  const cfEmail = process.env.CLOUDFLARE_EMAIL;
 
-const KV = new WorkersKV({})
+  const KV = new WorkersKV({ cfAccountId, cfAuthKey, cfEmail })
 ~~~
 
-### **`getToken({ ... })`**
+Then, access it's instance methods. For instance:
+
+~~~js
+const namespaceId = '...'
+
+const allKeys = await KV.listAllKeys({namespaceId})
+~~~
+
+## API
+
+### **`WorkersKV({ ... })`**
 
 Function definition:
 
 ```js
-const getToken = async ({
-  privateKeyPEM,
-  payload,
-  alg = 'RS256',
-  cryptoImppl = null,
-  headerAdditions = {},
-}) => { ... }
+const WorkersKV = function({
+  cfAccountId,
+  cfEmail,
+  cfAuthKey,
+  namespaceId = '',
+}){ ... }
 ```
 
 Where:
 
-  - **`privateKeyPEM`** is the private key `string` in `PEM` format.
-  - **`payload`** is the `JSON` payload to be signed, i.e. the `{ aud, iat, exp, iss, sub, scope, ... }`.
-  - **`alg`** is the signing algorithm as defined in [`RFC7518`](https://tools.ietf.org/html/rfc7518#section-3.1), currently only `RS256` is supported.
-  - **`cryptoImpl`** is a `WebCrypto` `API` implementation. Cloudflare Workers support `WebCrypto` out of the box. For `Node.js` you can use [`node-webcrypto-ossl`](https://github.com/PeculiarVentures/node-webcrypto-ossl) - see examples below and in the tests.
-  - **`headerAdditions`** is an object with keys and string values to be added to the header of the `JWT`.
+  - **`cfAccountId`** is your Cloudflare account id.
+  - **`cfEmail`** is the email you registered with Cloudflare.
+  - **`cfAuthKey`** is your Cloudflare Auth Key.
+  - **`namespaceId`** is the `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
 
 ### **`getTokenFromGCPServiceAccount({ ... })`**
 
