@@ -113,8 +113,8 @@ const listNamespaces = async ({
 
 Where:
 
-  - **`page`** *optional* the namespaces page (for paging).
-  - **`per_page`** *optional* the number of namespaces per page.
+  - **`page`** *optional* Page number of paginated results.
+  - **`per_page`** *optional* Maximum number of results per page.
 
 ### **`readKey({ ... })`**
 
@@ -148,6 +148,27 @@ Where:
   - **`key`** *required* the key name.
   - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
 
+### **`writeKey({ ... })`**
+
+Function definition:
+
+```js
+const writeKey=> async ({
+  key,
+  value,
+  namespaceId = '',
+  expiration = undefined,
+  expiration_ttl = undefined,
+}) => { ... }
+```
+
+Where:
+
+  - **`key`** *required* A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid.
+  - **`value`** *required* A UTF-8 encoded string to be stored, up to 2 MB in length.
+  - **`namespaceId`** *optional* Is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
+  - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
 ### **`writeMultipleKeys({ ... })`**
 
 Function definition:
