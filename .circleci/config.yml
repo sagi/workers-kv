@@ -26,7 +26,7 @@ jobs:
       - run:
           name: eslint
           command: yarn lint
-      -run:
+      - run:
         name: prettier
         command: yarn prettier  --list-different ./src/*.js
       - run:
