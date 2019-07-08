@@ -35,6 +35,8 @@ const allKeys = await KV.listAllKeys({namespaceId})
 
 ## API
 
+We try to adhere to [Cloudflare's Workers KV REST API](https://api.cloudflare.com/#workers-kv-namespace-properties)
+
 ### **`WorkersKV({ ... })`**
 
 Function definition:
@@ -55,29 +57,45 @@ Where:
   - **`cfAuthKey`** is your Cloudflare Auth Key.
   - **`namespaceId`** is the `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
 
-### **`getTokenFromGCPServiceAccount({ ... })`**
+### **`listKeys({ ... })`**
 
 Function definition:
 
 ```js
-const getTokenFromGCPServiceAccount = async ({
-  serviceAccountJSON,
-  aud,
-  alg = 'RS256',
-  cryptoImppl = null,
-  expiredAfter = 3600,
-  headerAdditions = {},
-  payloadAdditions = {}
-}) => { ... }
+export const listKeys = async ({
+  namespaceId = '',
+  limit = MAX_KEYS_LIMIT,
+  cursor = undefined,
+  prefix = undefined,
+} = {}) => { ... }
 ```
 
 Where:
 
-  - **`serviceAccountJSON`** is the service account `JSON` object .
-  - **`aud`** is the audience field in the `JWT`'s payload. e.g. `https://www.googleapis.com/oauth2/v4/token`'.
-  - **`expiredAfter`** - the duration of the token's validity. Defaults to 1 hour - 3600 seconds.
-  - **`payloadAdditions`** is an object with keys and string values to be added to the payload of the `JWT`. Example - `{ scope: 'https://www.googleapis.com/auth/chat.bot' }`.
-  - **`alg`**, **`cryptoImpl`**, **`headerAdditions`** are defined as above.
+  - **`namespaceId`** is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`limit`** is the number of keys you'd like to list (lexicographic ordering).
+  - **`cursor`**if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
+  - **`prefix`** allows your to retrieve all keys that begins with it (e.g. "prod_" ).
+
+### **`listAllKeys({ ... })`**
+
+Cursors through `listKeys` requests for you.
+
+Function definition:
+
+```js
+export const listKeys = async ({
+  namespaceId = '',
+  prefix = undefined,
+  limit = MAX_KEYS_LIMIT,
+} = {}) => { ... }
+```
+
+Where:
+
+  - **`namespaceId`** is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`cursor`**if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
+  - **`prefix`** allows your to retrieve all keys that begins with it (e.g. "prod_" ).
 
 
 ## Example
