@@ -1,0 +1,47 @@
+{
+  "name": "@sagi.io/cfw-kv",
+  "version": "0.0.1",
+  "description": "Cloudflare Workers KV API for Node.js",
+  "author": "Sagi Kedmi <git@sagi.io> (https://sagi.io)",
+  "homepage": "https://sagi.io",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "babel --ignore '**/*.test.js' --ignore testdata src -d lib --verbose",
+    "prepublish": "yarn build",
+    "coverage": "yarn build && yarn jest --coverage",
+    "test": "yarn build && yarn jest"
+  },
+  "dependencies": {
+    "@sagi.io/globalthis": "^0.0.2",
+    "base64url": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-eslint": "^10.0.2",
+    "coveralls": "^3.0.3",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-jest": "^22.7.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "jest-junit": "^6.4.0",
+    "node-webcrypto-ossl": "^1.0.44",
+    "prettier": "^1.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sagi/cfw-jwt.git"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "cloudflare workers",
+    "kv",
+    "api",
+    "node"
+  ]
+}
