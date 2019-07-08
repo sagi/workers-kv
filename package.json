@@ -10,6 +10,7 @@
   "scripts": {
     "build": "babel --ignore '**/*.test.js' --ignore testdata src -d lib --verbose",
     "prepublish": "yarn build",
+    "prettier:ci": "prettier --list-different ./src/*.js",
     "coverage": "yarn build && yarn jest --coverage",
     "lint": "yarn eslint ./src",
     "test": "yarn build && yarn jest"
