@@ -31,7 +31,7 @@ Then, access it's instance methods. For instance:
 ~~~js
 const namespaceId = '...'
 
-const allKeys = await KV.listAllKeys({namespaceId})
+const allKeys = await KV.listAllKeys({ namespaceId })
 ~~~
 
 ## API
@@ -55,10 +55,10 @@ const WorkersKV = function({
 
 Where:
 
-  - **`cfAccountId`** is your Cloudflare account id.
-  - **`cfEmail`** is the email you registered with Cloudflare.
-  - **`cfAuthKey`** is your Cloudflare Auth Key.
-  - **`namespaceId`** is the `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
+  - **`cfAccountId`** *required* is your Cloudflare account id.
+  - **`cfEmail`** *required* is the email you registered with Cloudflare.
+  - **`cfAuthKey`** *required* is your Cloudflare Auth Key.
+  - **`namespaceId`** *optional* is the `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
 
 ### **`listKeys({ ... })`**
 
@@ -75,10 +75,10 @@ const listKeys = async ({
 
 Where:
 
-  - **`namespaceId`** is the namespace id (can also be provided while instantiating `WorkersKV`).
-  - **`limit`** is the number of keys you'd like to list (lexicographic ordering).
-  - **`cursor`** if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
-  - **`prefix`** allows your to retrieve all keys that begins with it (e.g. "prod_" ).
+  - **`namespaceId`** *opitonal* is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`limit`** *opitonal* is the number of keys you'd like to list (lexicographic ordering).
+  - **`cursor`** *optional* if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
+  - **`prefix`** *optional* allows your to retrieve all keys that begins with it (e.g. "prod_" ).
 
 ### **`listAllKeys({ ... })`**
 
@@ -87,7 +87,7 @@ Cursors through `listKeys` requests for you.
 Function definition:
 
 ```js
-const listKeys = async ({
+const listAllKeys = async ({
   namespaceId = '',
   prefix = undefined,
   limit = MAX_KEYS_LIMIT,
@@ -96,16 +96,16 @@ const listKeys = async ({
 
 Where:
 
-  - **`namespaceId`** is the namespace id (can also be provided while instantiating `WorkersKV`).
-  - **`cursor`** if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
-  - **`prefix`** allows your to retrieve all keys that begins with it (e.g. "prod_" ).
+  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
+  - **`cursor`** *optional* if your query has more keys than the provided `limit`, Cloudflare will send a cursor to send with your next query.
+  - **`prefix`** *optional* allows your to retrieve all keys that begins with it (e.g. "prod_" ).
 
 ### **`listNamespaces({ ... })`**
 
 Function definition:
 
 ```js
-const listNamespaces = baseInputs => async ({
+const listNamespaces = async ({
   page = 1,
   per_page = 50,
 } = {}) => { ... }
@@ -115,3 +115,19 @@ Where:
 
   - **`page`** *optional* the namespaces page (for paging).
   - **`per_page`** *optional* the number of namespaces per page.
+
+### **`readKey({ ... })`**
+
+Function definition:
+
+```js
+const readKey = async ({
+  key,
+  namespaceId = '',
+}) => { ... }
+```
+
+Where:
+
+  - **`key`** *required* the key name.
+  - **`namespaceId`** *optional* is the namespace id (can also be provided while instantiating `WorkersKV`).
