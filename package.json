@@ -1,6 +1,6 @@
 {
   "name": "@sagi.io/workers-kv",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cloudflare Workers KV API for Node.js",
   "author": "Sagi Kedmi <git@sagi.io> (https://sagi.io)",
   "homepage": "https://sagi.io",
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sagi/cfw-jwt.git"
+    "url": "https://github.com/sagi/workers-kv.git"
   },
   "keywords": ["cloudflare", "workers", "cloudflare workers", "kv", "api", "node"]
 }
