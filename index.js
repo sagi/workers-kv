@@ -1,3 +1,3 @@
-const WorkersKV = require('./lib/kv');
+const WorkersKVREST = require('./lib/workers');
 
-module.exports = WorkersKV.default;
+module.exports = WorkersKVREST.default;

@@ -1,6 +1,6 @@
 import { METHODS } from './methods';
 
-const WorkersKV = function({
+const WorkersKVREST = function({
   cfAccountId,
   cfEmail,
   cfAuthKey,
@@ -20,4 +20,4 @@ const WorkersKV = function({
   return API;
 };
 
-export default WorkersKV;
+export default WorkersKVREST;

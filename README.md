@@ -14,16 +14,16 @@ $ npm i @sagi.io/workers-kv
 
 ## Quickstart
 
-First, instantiate a `WorkersKV` instance:
+First, instantiate a `WorkersKVREST` instance:
 
 ~~~js
-const WorkersKV = require('@sagi.io/workers-kv')
+const WorkersKVREST = require('@sagi.io/workers-kv')
 
 const cfAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
 const cfAuthKey = process.env.CLOUDFLARE_AUTH_KEY;
 const cfEmail = process.env.CLOUDFLARE_EMAIL;
 
-const KV = new WorkersKV({ cfAccountId, cfAuthKey, cfEmail })
+const WorkersKV = new WorkersKVREST({ cfAccountId, cfAuthKey, cfEmail })
 ~~~
 
 Then, access it's instance methods. For instance:
@@ -38,14 +38,14 @@ const allKeys = await KV.listAllKeys({ namespaceId })
 
 We adhere to [Cloudflare's Workers KV REST API](https://api.cloudflare.com/#workers-kv-namespace-properties).
 
-### **`WorkersKV({ ... })`**
+### **`WorkersKVREST({ ... })`**
 
 Instantiates a `WorkersKV` object with the defined below methods.
 
 Function definition:
 
 ```js
-const WorkersKV = function({
+const WorkersKVREST = function({
   cfAccountId,
   cfEmail,
   cfAuthKey,
@@ -60,7 +60,7 @@ Where:
   - **`cfAuthKey`** *required* Your Cloudflare Auth Key.
   - **`namespaceId`** *optional* The `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
 
-### **`listKeys({ ... })`**
+### **`WorkersKV.listKeys({ ... })`**
 
 Function definition:
 
@@ -80,7 +80,7 @@ Where:
   - **`cursor`** *optional* Opaque token indicating the position from which to continue when requesting the next set of records if the amount of list results was limited by the limit parameter. A valid value for the cursor can be obtained from the cursors object in the result_info structure.
   - **`prefix`** *optional* A string prefix used to filter down which keys will be returned. Exact matches and any key names that begin with the prefix will be returned.
 
-### **`listAllKeys({ ... })`**
+### **`WorkersKV.listAllKeys({ ... })`**
 
 Cursors through `listKeys` requests for you.
 
@@ -132,7 +132,7 @@ Where:
   - **`key`** *required* the key name.
   - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
 
-### **`deleteKey({ ... })`**
+### **`WorkersKV.deleteKey({ ... })`**
 
 Function definition:
 
@@ -148,7 +148,7 @@ Where:
   - **`key`** *required* the key name.
   - **`namespaceId`** *optional* The namespace id (can also be provided while instantiating `WorkersKV`).
 
-### **`writeKey({ ... })`**
+### **`WorkersKV.writeKey({ ... })`**
 
 Function definition:
 
@@ -170,7 +170,7 @@ Where:
   - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
   - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
 
-### **`writeMultipleKeys({ ... })`**
+### **`WorkersKV.writeMultipleKeys({ ... })`**
 
 Function definition:
 
@@ -190,7 +190,7 @@ Where:
   - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
   - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
 
-### **`deleteMultipleKeys({ ... })`**
+### **`WorkersKV.deleteMultipleKeys({ ... })`**
 
 Function definition:
 
