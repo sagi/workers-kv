@@ -112,3 +112,17 @@ export const getNamespaceId = (baseInputs, namespaceId) => {
   }
   return nsId;
 };
+
+export const getAuthHeaders = (cfEmail, cfAuthKey, cfAuthToken) => {
+  if (cfAuthToken) {
+    return { Authorization: `Bearer ${cfAuthToken}` };
+  }
+
+  if (cfEmail && cfAuthKey) {
+    return { 'X-Auth-Email': cfEmail, 'X-Auth-Key': cfAuthKey };
+  }
+
+  throw new Error(
+    `${ERROR_PREFIX}: Either cfAuthToken or cfEmail and cfAuthKey must be provided`
+  );
+};

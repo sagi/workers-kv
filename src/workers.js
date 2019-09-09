@@ -1,18 +1,17 @@
 import { METHODS } from './methods';
+import { getAuthHeaders } from './utils';
 
 const WorkersKVREST = function({
   cfAccountId,
-  cfEmail,
-  cfAuthKey,
+  cfEmail = null,
+  cfAuthKey = null,
+  cfAuthToken = null,
   namespaceId = '',
 }) {
   const host = 'api.cloudflare.com';
   const basePath = `/client/v4/accounts/${cfAccountId}/storage/kv/namespaces`;
+  const headers = getAuthHeaders(cfEmail, cfAuthKey, cfAuthToken);
 
-  const headers = {
-    'X-Auth-Email': cfEmail,
-    'X-Auth-Key': cfAuthKey,
-  };
   const baseInputs = { host, basePath, namespaceId, headers };
 
   const API = {};

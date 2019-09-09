@@ -56,9 +56,12 @@ const WorkersKVREST = function({
 Where:
 
   - **`cfAccountId`** *required* Your Cloudflare account id.
-  - **`cfEmail`** *required* The email you registered with Cloudflare.
-  - **`cfAuthKey`** *required* Your Cloudflare Auth Key.
+  - **`cfEmail`** *optional|required* The email you registered with Cloudflare.
+  - **`cfAuthKey`** *optional|required* Your Cloudflare Auth Key.
+  - **`cfAuthToken`** *optional|required* Your Cloudflare Auth Token.
   - **`namespaceId`** *optional* The `Workers KV` namespace id. This argument is *optional* - either provide it here, or via the methods below.
+
+Use `cfAuthToken` with a [Cloudflare auth token](https://support.cloudflare.com/hc/en-us/articles/200167836-Managing-API-Tokens-and-Keys). You can also set `cfEmail` and `cfAuthKey` directly without using an auth token.
 
 ### **`WorkersKV.listKeys({ ... })`**
 
