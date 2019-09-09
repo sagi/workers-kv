@@ -198,4 +198,16 @@ describe('utils', () => {
     const namespaceId3 = '';
     expect(utils.getNamespaceId(baseInputs3, namespaceId3)).toEqual('abcd');
   });
+
+  test('getAuthHeaders', () => {
+    expect(() => utils.getAuthHeaders(null, null, null)).toThrow();
+    expect(() => utils.getAuthHeaders('sagi@sagi.io', null, null)).toThrow();
+    expect(utils.getAuthHeaders('sagi@sagi.io', 'DEADBEEF', null)).toEqual({
+      'X-Auth-Email': 'sagi@sagi.io',
+      'X-Auth-Key': 'DEADBEEF',
+    });
+    expect(utils.getAuthHeaders(null, null, 'CAFEBABE')).toEqual({
+      Authorization: 'Bearer CAFEBABE',
+    });
+  });
 });
