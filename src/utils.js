@@ -29,11 +29,14 @@ export const responseBodyResolver = resolve => (headers, data) => {
   const contentType = headers['content-type'];
   if (contentType.includes('text/plain')) {
     resolve(data);
-  } else if (contentType.includes('application/json')) {
+  } else if (
+    contentType.includes('application/json') ||
+    contentType.includes('application/octet-stream')
+  ) {
     resolve(JSON.parse(data));
   } else {
     throw new Error(
-      `${ERROR_PREFIX} only JSON or plain text content types are expected.`
+      `${ERROR_PREFIX} only JSON, octet-stream or plain text content types are expected. Received content-type: ${contentType}.`
     );
   }
 };
