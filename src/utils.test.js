@@ -47,13 +47,20 @@ describe('utils', () => {
     utils.responseBodyResolver(resolve2)(headers2, data2);
     expect(resolve2).toHaveBeenCalledWith(JSON.parse(data2));
 
-    const headers3 = { 'content-type': 'application/bla' };
+    const contentType = 'application/bla';
+    const headers3 = { 'content-type': contentType };
     const data3 = 'ZIP..blaaaaa';
     expect(() => utils.responseBodyResolver(resolve2)(headers3, data3)).toThrow(
       `${
         utils.ERROR_PREFIX
-      } only JSON or plain text content types are expected.`
+      } only JSON, octet-stream or plain text content types are expected. Received content-type: ${contentType}.`
     );
+
+    const resolve4 = jest.fn();
+    const headers4 = { 'content-type': 'application/octet-stream' };
+    const data4 = '{ "a": 1234 }';
+    utils.responseBodyResolver(resolve4)(headers4, data4);
+    expect(resolve4).toHaveBeenCalledWith(JSON.parse(data4));
   });
 
   test('removeUndefineds', () => {
