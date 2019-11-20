@@ -4,7 +4,7 @@ import querystring from 'querystring';
 export const MAX_KEYS_LIMIT = 1000;
 export const MIN_KEYS_LIMIT = 10;
 export const MAX_KEY_LENGTH = 512;
-export const MAX_VALUE_LENGTH = 2 * 1024 * 1024;
+export const MAX_VALUE_LENGTH = 10 * 1024 * 1024;
 export const MIN_EXPIRATION_TTL_SECONDS = 60;
 export const MAX_MULTIPLE_KEYS_LENGTH = 10000;
 export const ERROR_PREFIX = '@sagi.io/workers-kv';
