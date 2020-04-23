@@ -130,6 +130,7 @@ export const writeMultipleKeys = baseInputs => async ({
   namespaceId = '',
   expiration = undefined,
   expiration_ttl = undefined,
+  base64 = false,
 }) => {
   checkKeyValueMap(keyValueMap);
   const { host, basePath, headers } = baseInputs;
@@ -143,6 +144,7 @@ export const writeMultipleKeys = baseInputs => async ({
   const bodyArray = Object.entries(keyValueMap).map(([key, value]) => ({
     key,
     value,
+    base64,
   }));
 
   const body = JSON.stringify(bodyArray);
