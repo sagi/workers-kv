@@ -168,7 +168,7 @@ const writeKey=> async ({
 Where:
 
   - **`key`** *required* A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid.
-  - **`value`** *required* A UTF-8 encoded string to be stored, up to 2 MB in length.
+  - **`value`** *required* A UTF-8 encoded string to be stored, up to 10 MB in length.
   - **`namespaceId`** *optional* Is the namespace id (can also be provided while instantiating `WorkersKV`).
   - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
   - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
@@ -183,6 +183,7 @@ const writeMultipleKeys => async ({
   namespaceId = '',
   expiration = undefined,
   expiration_ttl = undefined,
+  base64 = false,
 }) => { ... }
 ```
 
@@ -192,6 +193,7 @@ Where:
   - **`namespaceId`** *optional* Is the namespace id (can also be provided while instantiating `WorkersKV`).
   - **`expiration`** *optional* The time, measured in number of seconds since the UNIX epoch, at which the key should expire.
   - **`expiration_ttl`** *optional* The number of seconds for which the key should be visible before it expires. At least 60.
+  - **`base64`** *optional* Whether or not the server should base64 decode the value before storing it. Useful for writing values that wouldn't otherwise be valid JSON strings, such as images. Default: false.
 
 ### **`WorkersKV.deleteMultipleKeys({ ... })`**
 

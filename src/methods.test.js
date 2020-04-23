@@ -168,11 +168,20 @@ describe('methods', () => {
   });
 
   test('writeMultipleKeys', () => {
+    const base64 = true;
     const keyValueMap = { key1: 'value1', key2: 'value2' };
-    methods.writeMultipleKeys(baseInputs)({ keyValueMap, expiration_ttl: 123 });
+    methods.writeMultipleKeys(baseInputs)({
+      keyValueMap,
+      expiration_ttl: 123,
+      base64,
+    });
+    const body = JSON.stringify([
+      { key: 'key1', value: 'value1', base64 },
+      { key: 'key2', value: 'value2', base64 },
+    ]);
     const expectedOptions1 = {
       headers: {
-        'Content-Length': 65,
+        'Content-Length': body.length,
         'Content-Type': 'application/json',
         'X-Auth-Email': 'cf_email',
         'X-Auth-Key': 'cf_auth_key',
@@ -182,13 +191,7 @@ describe('methods', () => {
       path:
         '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/bulk?expiration_ttl=123',
     };
-    const bodyArray = [
-      { key: 'key1', value: 'value1' },
-      { key: 'key2', value: 'value2' },
-    ];
-    expect(utils.httpsReq).toHaveBeenCalledWith(
-      expectedOptions1,
-      JSON.stringify(bodyArray)
-    );
+
+    expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1, body);
   });
 });
