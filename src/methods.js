@@ -11,7 +11,7 @@ import {
   MAX_KEYS_LIMIT,
 } from './utils';
 
-export const listKeys = (baseInputs) => async ({
+export const listKeys = baseInputs => async ({
   namespaceId = '',
   limit = MAX_KEYS_LIMIT,
   cursor = undefined,
@@ -29,7 +29,7 @@ export const listKeys = (baseInputs) => async ({
   return httpsReq(options);
 };
 
-export const listAllKeys = (baseInputs) => async ({
+export const listAllKeys = baseInputs => async ({
   namespaceId = '',
   prefix = undefined,
   limit = MAX_KEYS_LIMIT,
@@ -49,7 +49,7 @@ export const listAllKeys = (baseInputs) => async ({
     });
     const { success, result } = data;
 
-    success && result.forEach((x) => results.push(x));
+    success && result.forEach(x => results.push(x));
 
     ({ result_info } = data);
     ({ cursor } = result_info);
@@ -62,7 +62,7 @@ export const listAllKeys = (baseInputs) => async ({
   };
 };
 
-export const listNamespaces = (baseInputs) => async ({
+export const listNamespaces = baseInputs => async ({
   page = 1,
   per_page = 50,
 } = {}) => {
@@ -75,7 +75,7 @@ export const listNamespaces = (baseInputs) => async ({
   return httpsReq(options);
 };
 
-export const writeKey = (baseInputs) => async ({
+export const writeKey = baseInputs => async ({
   key,
   value,
   namespaceId = '',
@@ -101,7 +101,7 @@ export const writeKey = (baseInputs) => async ({
   return httpsReq(options, value);
 };
 
-export const readKey = (baseInputs) => async ({ key, namespaceId = '' }) => {
+export const readKey = baseInputs => async ({ key, namespaceId = '' }) => {
   checkKey(key);
   const { host, basePath, headers } = baseInputs;
   const nsId = getNamespaceId(baseInputs, namespaceId);
@@ -113,7 +113,7 @@ export const readKey = (baseInputs) => async ({ key, namespaceId = '' }) => {
   return httpsReq(options);
 };
 
-export const deleteKey = (baseInputs) => async ({ key, namespaceId = '' }) => {
+export const deleteKey = baseInputs => async ({ key, namespaceId = '' }) => {
   checkKey(key);
   const { host, basePath, headers } = baseInputs;
   const nsId = getNamespaceId(baseInputs, namespaceId);
@@ -125,7 +125,7 @@ export const deleteKey = (baseInputs) => async ({ key, namespaceId = '' }) => {
   return httpsReq(options);
 };
 
-export const writeMultipleKeys = (baseInputs) => async ({
+export const writeMultipleKeys = baseInputs => async ({
   keyValueMap,
   namespaceId = '',
   expiration = undefined,
@@ -158,7 +158,7 @@ export const writeMultipleKeys = (baseInputs) => async ({
   return httpsReq(options, body);
 };
 
-export const deleteMultipleKeys = (baseInputs) => async ({
+export const deleteMultipleKeys = baseInputs => async ({
   keys,
   namespaceId = '',
 }) => {
