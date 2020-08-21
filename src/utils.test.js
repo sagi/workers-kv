@@ -60,7 +60,7 @@ describe('utils', () => {
     const headers4 = { 'content-type': 'application/octet-stream' };
     const data4 = '{ "a": 1234 }';
     utils.responseBodyResolver(resolve4)(headers4, data4);
-    expect(resolve4).toHaveBeenCalledWith(JSON.parse(data4));
+    expect(resolve4).toHaveBeenCalledWith(data4);
   });
 
   test('removeUndefineds', () => {

@@ -1,6 +1,8 @@
 import https from 'https';
 import querystring from 'querystring';
 
+const workersKvDebug = require('debug')('workers-kv-debug');
+
 export const MAX_KEYS_LIMIT = 1000;
 export const MIN_KEYS_LIMIT = 10;
 export const MAX_KEY_LENGTH = 512;
@@ -16,6 +18,7 @@ export const httpsReq = (options, reqBody = '') =>
     options.agent = httpsAgent;
     const req = https.request(options, res => {
       const { headers } = res;
+      workersKvDebug({ headers });
       let data = '';
       res.on('data', chunk => (data += chunk));
       res.on('end', () => responseBodyResolver(resolve)(headers, data));
@@ -29,11 +32,10 @@ export const responseBodyResolver = resolve => (headers, data) => {
   const contentType = headers['content-type'];
   if (contentType.includes('text/plain')) {
     resolve(data);
-  } else if (
-    contentType.includes('application/json') ||
-    contentType.includes('application/octet-stream')
-  ) {
+  } else if (contentType.includes('application/json')) {
     resolve(JSON.parse(data));
+  } else if (contentType.includes('application/octet-stream')) {
+    resolve(data);
   } else {
     throw new Error(
       `${ERROR_PREFIX} only JSON, octet-stream or plain text content types are expected. Received content-type: ${contentType}.`
