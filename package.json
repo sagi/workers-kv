@@ -1,6 +1,6 @@
 {
   "name": "@sagi.io/workers-kv",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Cloudflare Workers KV API for Node.js",
   "author": "Sagi Kedmi <git@sagi.io> (https://sagi.io)",
   "homepage": "https://sagi.io",
