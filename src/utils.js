@@ -16,19 +16,19 @@ export const httpsAgent = new https.Agent({ keepAlive: true });
 export const httpsReq = (options, reqBody = '') =>
   new Promise((resolve, reject) => {
     options.agent = httpsAgent;
-    const req = https.request(options, res => {
+    const req = https.request(options, (res) => {
       const { headers } = res;
       workersKvDebug({ headers });
       let data = '';
-      res.on('data', chunk => (data += chunk));
+      res.on('data', (chunk) => (data += chunk));
       res.on('end', () => responseBodyResolver(resolve)(headers, data));
     });
-    req.on('error', e => reject(e));
+    req.on('error', (e) => reject(e));
     !!reqBody && req.write(reqBody);
     req.end();
   });
 
-export const responseBodyResolver = resolve => (headers, data) => {
+export const responseBodyResolver = (resolve) => (headers, data) => {
   const contentType = headers['content-type'];
   if (contentType.includes('text/plain')) {
     resolve(data);
@@ -43,14 +43,14 @@ export const responseBodyResolver = resolve => (headers, data) => {
   }
 };
 
-export const removeUndefineds = obj => JSON.parse(JSON.stringify(obj));
+export const removeUndefineds = (obj) => JSON.parse(JSON.stringify(obj));
 
-export const getQueryString = obj =>
+export const getQueryString = (obj) =>
   querystring.stringify(removeUndefineds(obj));
 
 export const getPathWithQueryString = (path, qs) => path + (qs ? `?${qs}` : '');
 
-export const checkLimit = limit => {
+export const checkLimit = (limit) => {
   if (limit < MIN_KEYS_LIMIT || limit > MAX_KEYS_LIMIT) {
     throw new Error(
       `${ERROR_PREFIX}: limit should be between ${MIN_KEYS_LIMIT} and ${MAX_KEYS_LIMIT}. Given limit: ${limit}.`
@@ -58,11 +58,11 @@ export const checkLimit = limit => {
   }
 };
 
-export const isString = x =>
+export const isString = (x) =>
   typeof x === 'string' ||
   (x && Object.prototype.toString.call(x) === '[object String]');
 
-export const checkKey = key => {
+export const checkKey = (key) => {
   if (!key || !isString(key) || key.length > MAX_KEY_LENGTH) {
     throw new Error(
       `${ERROR_PREFIX}: Key length should be less than ${MAX_KEY_LENGTH}. `
@@ -87,7 +87,7 @@ export const checkMultipleKeysLength = (method, length) => {
   }
 };
 
-export const checkKeyValueMap = keyValueMap => {
+export const checkKeyValueMap = (keyValueMap) => {
   const entries = keyValueMap ? Object.entries(keyValueMap) : [];
   if (!entries.length) {
     throw new Error(
@@ -98,7 +98,7 @@ export const checkKeyValueMap = keyValueMap => {
   entries.forEach(([k, v]) => checkKeyValue(k, v));
 };
 
-export const checkKeys = keys => {
+export const checkKeys = (keys) => {
   if (!keys || !Array.isArray(keys) || !keys.length) {
     throw new Error(
       `${ERROR_PREFIX}: keys must be an array of strings (key names).`

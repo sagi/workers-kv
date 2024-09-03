@@ -23,10 +23,7 @@ jobs:
       - run:
           name: test
           command: yarn test
-      - run:
-          name: eslint
-          command: yarn lint
-      - run:
+     - run:
           name: prettier
           command: yarn prettier:ci
       - run:

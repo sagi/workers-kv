@@ -32,8 +32,7 @@ describe('methods', () => {
       headers: { 'X-Auth-Email': 'cf_email', 'X-Auth-Key': 'cf_auth_key' },
       host: 'api.cloudflare.com',
       method: 'GET',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/keys?limit=123&prefix=prod_',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/keys?limit=123&prefix=prod_',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1);
 
@@ -48,8 +47,7 @@ describe('methods', () => {
       headers: { 'X-Auth-Email': 'cf_email', 'X-Auth-Key': 'cf_auth_key' },
       host: 'api.cloudflare.com',
       method: 'GET',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id_123/keys?limit=123&prefix=prod_',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id_123/keys?limit=123&prefix=prod_',
     };
 
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions2);
@@ -91,8 +89,7 @@ describe('methods', () => {
       headers: { 'X-Auth-Email': 'cf_email', 'X-Auth-Key': 'cf_auth_key' },
       host: 'api.cloudflare.com',
       method: 'GET',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces?page=1&per_page=17',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces?page=1&per_page=17',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1);
   });
@@ -114,8 +111,7 @@ describe('methods', () => {
       },
       host: 'api.cloudflare.com',
       method: 'PUT',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey?expiration_ttl=123',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey?expiration_ttl=123',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1, value);
   });
@@ -127,8 +123,7 @@ describe('methods', () => {
       headers: { 'X-Auth-Email': 'cf_email', 'X-Auth-Key': 'cf_auth_key' },
       host: 'api.cloudflare.com',
       method: 'GET',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1);
   });
@@ -140,8 +135,7 @@ describe('methods', () => {
       headers: { 'X-Auth-Email': 'cf_email', 'X-Auth-Key': 'cf_auth_key' },
       host: 'api.cloudflare.com',
       method: 'DELETE',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/values/xKey',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1);
   });
@@ -158,8 +152,7 @@ describe('methods', () => {
       },
       host: 'api.cloudflare.com',
       method: 'DELETE',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/bulk',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/bulk',
     };
     expect(utils.httpsReq).toHaveBeenCalledWith(
       expectedOptions1,
@@ -188,8 +181,7 @@ describe('methods', () => {
       },
       host: 'api.cloudflare.com',
       method: 'PUT',
-      path:
-        '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/bulk?expiration_ttl=123',
+      path: '/client/v4/accounts/cf_account_id/storage/kv/namespaces/namespace_id/bulk?expiration_ttl=123',
     };
 
     expect(utils.httpsReq).toHaveBeenCalledWith(expectedOptions1, body);

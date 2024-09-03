@@ -1,7 +1,7 @@
 import { METHODS } from './methods';
 import { getAuthHeaders } from './utils';
 
-const WorkersKVREST = function({
+const WorkersKVREST = function ({
   cfAccountId,
   cfEmail = null,
   cfAuthKey = null,
