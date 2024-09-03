@@ -35,5 +35,6 @@
     "type": "git",
     "url": "https://github.com/sagi/workers-kv.git"
   },
-  "keywords": ["cloudflare", "workers", "cloudflare workers", "kv", "api", "node"]
+  "keywords": ["cloudflare", "workers", "cloudflare workers", "kv", "api", "node"],
+  "types": "types.d.ts"
 }
