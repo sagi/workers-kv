@@ -1,6 +1,6 @@
 {
   "name": "@sagi.io/workers-kv",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Cloudflare Workers KV API for Node.js",
   "author": "Sagi Kedmi <git@sagi.io> (https://sagi.io)",
   "homepage": "https://sagi.io",
@@ -16,25 +16,31 @@
     "test": "yarn build && yarn jest"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "babel-eslint": "^10.0.2",
-    "coveralls": "^3.0.3",
-    "debug": "^4.1.1",
-    "eslint": "^6.0.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-jest": "^22.7.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "jest": "^24.8.0",
-    "jest-junit": "^6.4.0",
-    "node-webcrypto-ossl": "^1.0.44",
-    "prettier": "^1.17.0"
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "babel-eslint": "^10.1.0",
+    "coveralls": "^3.1.1",
+    "debug": "^4.3.6",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^28.8.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "prettier": "^3.3.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sagi/workers-kv.git"
   },
-  "keywords": ["cloudflare", "workers", "cloudflare workers", "kv", "api", "node"],
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "cloudflare workers",
+    "kv",
+    "api",
+    "node"
+  ],
   "types": "types.d.ts"
 }
